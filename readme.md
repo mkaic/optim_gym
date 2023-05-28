@@ -1,0 +1,3 @@
+# Kai's Optimizer Gym
+
+I wanted a way to see if my weird optimizer ideas worked, so I have made this repo as an MVP optimizer gym. It is barebones, and simply trains a variational autoencoder on Celeb-A when you run train.py. You can splice in your own optimizer in train.py if you like, as well as fiddle with the learning rate and other hyperparameters if you so wish. Many thanks to [AntixK](https://github.com/AntixK/PyTorch-VAE) for their PyTorch VAE implementation that I stole pieces of and made some tweaks to.
