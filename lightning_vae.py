@@ -68,8 +68,8 @@ class VAEExperiment(pl.LightningModule):
         #         test_input, test_label = batch
         recons = self.model.generate(test_input, labels=test_label)
 
-        reconstructions_path = Path("lightning_logs") / "Reconstructions"
-        reconstructions_path.mkdir(exist_ok=True)
+        reconstructions_path = Path(self.trainer.log_dir) / "Reconstructions"
+        reconstructions_path.mkdir(exist_ok=True, parents=True)
         vutils.save_image(
             recons.data,
             reconstructions_path
@@ -79,8 +79,8 @@ class VAEExperiment(pl.LightningModule):
         )
 
         try:
-            samples_path = Path("lightning_logs") / "Samples"
-            samples_path.mkdir(exist_ok=True)
+            samples_path = Path(self.trainer.log_dir) / "Samples"
+            samples_path.mkdir(exist_ok=True, parents=True)
             samples = self.model.sample(144, self.curr_device, labels=test_label)
             vutils.save_image(
                 samples.cpu().data,

@@ -46,5 +46,6 @@ model = VAEExperiment(
     input_size=input_size,
 )
 
-trainer = pl.Trainer(gpus=1, precision="bf16")
+trainer = pl.Trainer(gpus=1, precision="bf16", max_epochs=100)
 trainer.fit(model, train_dl, val_dl)
+torch.save(model.state_dict(), Path(trainer.log_dir) / "final_weights.pt")
